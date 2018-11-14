@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+
+<body>
+<div th:replace="base :: nav"></div>
+
+<div class="jumbotron text-center">
+    <h1>Help Find our Lost Furry Friends &#9785;</h1>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-3" th:each=" pet : ${pets}">
+            <div>
+                <div>
+                    <h3> [[${pet.name}]] is missing</h3>
+                    <h4> Lost on [[${pet.date}]]</h4>
+                </div>
+                <div id="div1">
+                    <img class="image" th:src="${pet.postImg}" alt="pet picture">
+                </div>
+                <div>
+                    [[${pet.description}]]
+                    <h4> Status: [[${pet.status}]]</h4>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div th:replace="base :: footer"></div>
+
+</body>
+</html>

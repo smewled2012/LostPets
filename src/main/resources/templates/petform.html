@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Message Adding </title>
+
+    <th:block th:insert="base :: header"></th:block>
+</head>
+
+<body>
+
+<div th:replace="base :: nav"></div>
+<br/>
+
+<div class="container bg-light">
+
+    <h1 class="text-center">Help Find our Lost Furry Friends ☹ </h1>
+    <hr>
+    <h3 class="p-4">Add your missing pet</h3>
+
+    <div class="row text-center pl-5">
+
+        <form action="#" th:action="@{/addpet}" th:object="${pet}" enctype="multipart/form-data" method="post">
+
+            <input type="hidden" th:field="*{id}" />
+            <!--<input type="hidden" th:value="${user_id}" th:field="*{user_id}">-->
+
+
+            <div class="form-group row">
+                <label for="petname" class="col-sm-2 col-form-label">Name: </label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="petname" rows="1" th:field="*{name}"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="postDt" class="col-sm-2 col-form-label">Post Date</label>
+                <div class="col-sm-10">
+                    <input type="date" th:field="*{date}" />
+                    <span class="text-danger" id="postDt" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">
+                    </span><br />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputDetails" class="col-sm-2 col-form-label">Description: </label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="inputDetails" rows="3" th:field="*{description}"></textarea>
+                </div>
+            </div>
+            <br />
+            <br />
+
+            <strong> &nbsp; Status: </strong><br/>
+            <select id="status" th:field="*{status}">
+                <option value="#">Status</option>
+                <option value="Lost">Lost</option>
+                <option value="Found">Found</option>
+            </select>
+            <span th:if="${#fields.hasErrors('status')}"
+                  th:errors="*{status}"></span><br /><br />
+
+            <div class="form-group row">
+                <label for="inputDetails" class="col-sm-2 col-form-label">File : </label>
+                <div class="col-sm-10">
+                    <input type="file" name="file" />
+                    <span th:if="${#fields.hasErrors('postImg')}" th:errors="*{postImg}"></span><br />
+                </div>
+            </div>
+            <br />
+            <br />
+
+            <input class="btn btn-success" type="submit" value="Submit" />
+
+        </form>
+    </div>
+</div>
+<div th:replace="base :: footer"></div>
+
+</body>
+</html>

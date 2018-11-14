@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <th:block th:fragment="header">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+        <script th:src="@{/js/bootstrap.bundle.min.js}" type="text/javascript"></script>
+        <link  rel="stylesheet" th:href="@{/css/style.css}"/>
+    </th:block>
+
+</head>
+
+<body>
+
+<div th:fragment="nav">
+
+    <nav class="navbar navbar navbar-expand-lg navbar-light bg-dark navbar-custom" th:fragment="main-navbar">
+
+        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"-->
+                <!--aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">-->
+            <!--<span class="navbar-toggler-icon"></span>-->
+        <!--</button>-->
+
+        <div class="collapse navbar-collapse align-text-left" id="navbarSupportedContent">
+
+            <ul class="nav navbar-nav align-text-left">
+                <li >
+                    <a class="navbar-brand text-white active font-weight-bold"  href="/" >&nbsp;&nbsp;LostPets APP</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item text-light active" th:inline="text">
+                    <a class="nav-link text-white" href="#">Welcome [[${#authentication.name}]]!</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item text-light active" th:inline="text">
+                    <a class="nav-link text-white" href="/"> Home </a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item text-light active" th:inline="text">
+                    <a class="nav-link text-white" href="/addpet"> Add a Lost Pet  </a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item text-light active" th:inline="text">
+                   <a class="nav-link text-white" href="/logout"> Log out</a>
+                </li>
+                <li class="nav-item">
+                    <a sec:authorize="!isAuthenticated()" class="nav-link text-white" href="/">welcome </a>
+                </li>
+                <li class="nav-item">
+                    <a sec:authorize="!isAuthenticated()" class="nav-link text-white" href="/">ALL Pets</a>
+                </li>
+                <li class="nav-item">
+                    <a sec:authorize="!isAuthenticated()" class="nav-link text-white" href="/lostpets">Lost Pets</a>
+                </li>
+                <li class="nav-item">
+                    <a sec:authorize="!isAuthenticated()" class="nav-link text-white" href="/foundpets">Found Pets</a>
+                </li>
+                <li class="nav-item">
+                    <a sec:authorize="!isAuthenticated()" class="nav-link text-white" href="/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a sec:authorize="!isAuthenticated()" class="nav-link text-white" href="/login">Login</a>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+</div>
+
+<!--<div th:fragment="footer">-->
+    <!--<div class="footer">-->
+        <!--@ 2018 Copyright-->
+    <!--</div>-->
+<!--</div>-->
+
+<footer th:fragment="footer">
+    <div class="footer" >
+        <hr/>
+        <span class="text-muted">@ 2018 Copyright of Pets </span>
+    </div>
+</footer>
+</body>
+</html>

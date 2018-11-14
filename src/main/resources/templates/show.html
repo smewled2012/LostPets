@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Information </title>
+
+    <th:block th:insert="base :: header"></th:block>
+</head>
+
+<body>
+
+<div th:replace="base :: nav"></div>
+
+<
+<div class="jumbotron text-center">
+    <h1>Help Find our Lost Furry Friends &#9856;</h1>
+</div>
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-3">
+            <div>
+                <div>
+                    <h4> [[${pet.name}]] is missing</h4>
+                    <h4> Lost on [[${pet.date}]]</h4>
+                </div>
+                <div id="div1">
+                    <img class="image" th:src="${pet.postImg}" alt="pet picture">
+                </div>
+
+                <div>
+                    [[${pet.description}]]
+                </div>
+
+                <div th:if="${user_id==pet.user.id }">
+                    <!--<div>-->
+                   <!--<strong>Status: </strong>-->
+                    <!--<span th:if="*{status}!= lost} "> <button></button><h5 type="text" th:field="*{status}" value="found"></h5></span> </button>-->
+                    <!--<span type="text" th:field="*{status}" value="Lost"></span>-->
+                    <!--</div>-->
+                    <div >
+                        <button class="btn btn-outline-success text-white" role="button"><a
+                                th:href="@{/update/{id}(id=${pet.id})}"> <strong>Edit pet </strong></a></button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<td>
+    <button class="btn btn-outline-success text-white" role="button"><a href="/"><strong>View All pets</strong></a>
+    </button>
+    <div th:if="${user_id==pet.user.id }">
+        <div>
+            <button class="btn btn-outline-success text-white" role="button"><a th:href="@{/update/{id}(id=${pet.id})}">
+                <strong>Edit pet </strong></a></button>
+        </div>
+
+        <button class="btn btn-outline-success text-white" role="button"><a th:href="@{/update/{id}(id=${pet.id})}">
+            <strong>Edit pet </strong></a></button>
+    </div>
+
+</td>
+</div>
+</div>
+
+<div th:replace="base :: footer"></div>
+
+</body>
+</html>

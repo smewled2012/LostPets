@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Welcome to lostPets</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+
+<div>
+
+    <div th:replace="base :: nav"></div>
+
+    <br/>
+    <br/>
+
+    <div th:fragment="container"></div>
+    <div class="jumbotron text-center">
+        <h1 class="text-black">
+            Help Find our Lost Furry Friends ☹
+        </h1>
+    </div>
+    <br/>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-3" th:each=" pet : ${pets}">
+                <div>
+                    <div>
+                        <h3> [[${pet.name}]] is missing</h3>
+                        <h4> Lost on [[${pet.date}]]</h4>
+                    </div>
+                    <div id="div1">
+                        <img class="image" th:src="${pet.postImg}" alt="pet picture">
+                    </div>
+
+
+
+                    <div th:if="${pet.user.id ==user_id}">
+                        <button class="btn btn-outline-success text-white" role="button"><a
+                                th:href="@{/update/{id}(id=${pet.id})}"> <strong>Edit pet </strong></a></button>
+                        <button class="btn btn-outline-success text-warning"><a th:href="@{/mark/{id}(id=${pet.id})}" th:if="${pet.status!='found'}"> Mark Found </a></button>
+
+                    </div>
+                    <div>
+                        [[${pet.description}]]
+                        <strong>status: [[${pet.status}]]</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+<div th:replace="base ::  footer"></div>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Login Page</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+
+
+<body>
+
+<div th:replace="base:: nav"></div>
+
+<div class="container bg-light">
+
+    <div class="jumbotron text-center">
+        <h1 class="text-black">
+            Help Find our Lost Furry Friends ☹
+        </h1>
+    </div>
+
+    <div class="my-5 "></div>
+    <div class="my-4 py-5" align="center">
+
+        <div class="container">
+            <h1>Login Page</h1><br/><br/>
+            <div th:if="${param.error}">
+                <p> Invalid username or password</p>
+            </div>
+        </div>
+        <br/>
+
+        <div th:if="${param.logout}">
+            You have been logged out
+        </div>
+
+        <form th:action="@{/login}" method="post">
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><i>Username</i>
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" name="username"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><i>Password</i></label>
+                <div class="col-sm-6">
+                    <input type="password" name="password"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-outline-success text-color" role="button"><strong>Log
+                        In </strong></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<nav th:replace="base :: footer"></nav>
+
+</body>
+</html>
